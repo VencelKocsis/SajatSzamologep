@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_téma">
+
+        <item android:id="@+id/style_white"
+            android:title="feher" />
+        <item android:id="@+id/style_black"
+            android:title="fekete"/>
+        
+    </group>
+</menu>
