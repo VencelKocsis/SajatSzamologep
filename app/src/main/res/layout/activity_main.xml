@@ -54,7 +54,7 @@
             android:text="8"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/szam7"
-            app:layout_constraintTop_toBottomOf="@+id/memoryplussz" /> // 8
+            app:layout_constraintTop_toBottomOf="@+id/ANS" /> // 8
 
         <Button
             android:id="@+id/szam9"
@@ -66,7 +66,7 @@
             android:text="9"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/szam8"
-            app:layout_constraintTop_toBottomOf="@+id/memoryminusz" /> // 9
+            app:layout_constraintTop_toBottomOf="@+id/ANS" /> // 9
 
         <Button
             android:id="@+id/szam4"
@@ -168,12 +168,13 @@
             android:id="@+id/osztas"
             android:layout_width="90dp"
             android:layout_height="60dp"
+            android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="300dp"
             android:background="@drawable/operation_gradient"
             android:text="/"
             android:textSize="30sp"
-            app:layout_constraintStart_toEndOf="@+id/memoryminusz"
+            app:layout_constraintStart_toEndOf="@+id/ANS"
             app:layout_constraintTop_toTopOf="parent" /> // /
 
         <Button
@@ -229,85 +230,77 @@
             android:layout_width="65dp"
             android:layout_height="60dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="176dp"
+            android:layout_marginTop="300dp"
             android:background="@drawable/operation_gradient"
             android:text="AC"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" /> // AC
-
-        <Button
-            android:id="@+id/memoryplussz"
-            android:layout_width="65dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="176dp"
-            android:background="@drawable/m_gradient"
-            android:text="M+"
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@+id/AC"
-            app:layout_constraintTop_toTopOf="parent" /> // M+
-
-        <Button
-            android:id="@+id/memoryminusz"
-            android:layout_width="65dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="176dp"
-            android:background="@drawable/m_gradient"
-            android:text="M-"
-
-            android:textSize="25sp"
-            app:layout_constraintStart_toEndOf="@+id/memoryplussz"
-            app:layout_constraintTop_toTopOf="parent" /> // M-
-
-        <Button
-            android:id="@+id/releaseMemory"
-            android:layout_width="65dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/m_gradient"
-            android:text="RM"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/memory"
-            app:layout_constraintTop_toBottomOf="@+id/comma" /> // RM
-
-        <Button
-            android:id="@+id/createMemory"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/m_gradient"
-            android:text="CM"
-            android:textSize="24sp"
-            app:layout_constraintStart_toEndOf="@+id/releaseMemory"
-            app:layout_constraintTop_toBottomOf="@+id/egyenlo" /> // CM
-
-        <Button
-            android:id="@+id/memory"
-            android:layout_width="145dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/m_gradient"
-            android:text="M"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/szam0" /> // M
+            app:layout_constraintTop_toTopOf="parent" />// AC
 
         <Button
             android:id="@+id/ANS"
-            android:layout_width="332dp"
+            android:layout_width="146dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="300dp"
             android:background="@drawable/clicked_gradient"
             android:text="ANS"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/memory" /> // ANS
+            app:layout_constraintTop_toTopOf="parent" />// ANS
+
+        <Button
+            android:id="@+id/DEC"
+            android:layout_width="154dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/m_gradient"
+            android:text="DEC"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kijelzo1" /> // DEC
+
+        <Button
+            android:id="@+id/BIN"
+            android:layout_width="154dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/m_gradient"
+            android:text="BIN"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/DEC"
+            app:layout_constraintTop_toBottomOf="@+id/kijelzo1" /> // BIN
+
+        <Button
+            android:id="@+id/HEX"
+            android:layout_width="154dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/m_gradient"
+            android:text="HEX"
+            android:textSize="40sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DEC" /> // HEX
+
+        <Button
+            android:id="@+id/OCT"
+            android:layout_width="154dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/m_gradient"
+            android:text="OCT"
+            android:textSize="40sp"
+            app:layout_constraintStart_toEndOf="@+id/HEX"
+            app:layout_constraintTop_toBottomOf="@+id/BIN" /> // OCT
 
     </android.support.constraint.ConstraintLayout>
 

@@ -6,6 +6,5 @@
             android:title="feher" />
         <item android:id="@+id/style_black"
             android:title="fekete"/>
-        
     </group>
 </menu>

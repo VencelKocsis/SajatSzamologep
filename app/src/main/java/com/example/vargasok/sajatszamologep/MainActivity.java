@@ -18,11 +18,9 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     TextView t1;
-    Button buttons[] = new Button[23];
-    ConstraintLayout constraintLayout;
-    AnimationDrawable animationDrawable;
+    Button buttons[] = new Button[22];
 
-    double memory, prevInput, prevResult, ANS;
+    double prevInput, prevResult, ANS, dec, bin, hex, oct;
     boolean justOutputted = true;
     boolean firstInput = true;
     boolean ANSPressed = false;
@@ -78,13 +76,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[13] = findViewById(R.id.szorzas);
         buttons[14] = findViewById(R.id.osztas);
         buttons[15] = findViewById(R.id.egyenlo);
-        buttons[16] = findViewById(R.id.memoryplussz);
-        buttons[17] = findViewById(R.id.memoryminusz);
-        buttons[18] = findViewById(R.id.AC);
-        buttons[19] = findViewById(R.id.releaseMemory);
-        buttons[20] = findViewById(R.id.createMemory);
-        buttons[21] = findViewById(R.id.memory);
-        buttons[22] = findViewById(R.id.ANS);
+        buttons[16] = findViewById(R.id.AC);
+        buttons[17] = findViewById(R.id.ANS);
+        buttons[18] = findViewById(R.id.DEC);
+        buttons[19] = findViewById(R.id.BIN);
+        buttons[20] = findViewById(R.id.HEX);
+        buttons[21] = findViewById(R.id.OCT);
 
         buttons[0].setOnClickListener(this);
         buttons[1].setOnClickListener(this);
@@ -108,14 +105,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[19].setOnClickListener(this);
         buttons[20].setOnClickListener(this);
         buttons[21].setOnClickListener(this);
-        buttons[22].setOnClickListener(this);
 
         t1 = findViewById(R.id.kijelzo1);
-
-        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].setTextColor(Color.BLACK);
-        }
 
         /*
         if(getResources().getDisplayMetrics().widthPixels>getResources().getDisplayMetrics().
@@ -196,35 +187,35 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             case R.id.AC:
                 ResetCalculator();
                 break;
-            case R.id.memoryplussz:
-                memory += Input();
-                break;
-            case R.id.memoryminusz:
-                memory -= Input();
-                break;
-            case R.id.releaseMemory:
-                memory = 0;
-                Log.i("Previuos result", "Released from memory, " + Double.toString(memory));
-                break;
-            case R.id.createMemory:
-                if (ANSPressed) {
-                    Log.i("ANS = ", Double.toString(ANS));
-                    Log.i("ANS saved in memory", Double.toString(ANS));
-                    memory = ANS;
-                } else {
-                    memory = Input();
-                    Log.i("Previous input", "Saved in memory: " + Double.toString(Input()));
-                }
 
-            case R.id.memory:
-                Display(memory);
-                break;
             case R.id.ANS:
                 ANSPressed = true;
                 Display(ANS);
                 break;
+
+            case R.id.DEC:
+                Gradient(18);
+
+                break;
+
+            case R.id.BIN:
+                Gradient(19);
+
+                break;
+
+            case R.id.HEX:
+                Gradient(20);
+
+                break;
+
+            case R.id.OCT:
+                Gradient(21);
+
+                break;
         }
     }
+
+    //TODO toBinary toDEC toHEX toOCT functions into switch
 
     private void ResetCalculator() {
         Display(0);
@@ -303,6 +294,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[12].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.operation_gradient));
         buttons[13].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.operation_gradient));
         buttons[14].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.operation_gradient));
+        buttons[18].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
+        buttons[19].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
+        buttons[20].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
+        buttons[21].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
     }
 }
 
