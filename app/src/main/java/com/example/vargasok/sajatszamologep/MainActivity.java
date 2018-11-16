@@ -237,6 +237,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         prevResult = x;
     }
 
+    private void Display(String x) {
+        justOutputted = true;
+        t1.setText(x);
+    }
+
     public double Input() {
         String input = t1.getText().toString();
         input = input.replaceAll("[^0-9.]", "");

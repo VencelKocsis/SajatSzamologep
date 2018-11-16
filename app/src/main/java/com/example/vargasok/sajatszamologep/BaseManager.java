@@ -1,13 +1,15 @@
 package com.example.vargasok.sajatszamologep;
 
+import android.util.Log;
+
 public class BaseManager {
 
     private static Base currentBase = Base.Decimal;
 
     private MainActivity mainActivity;
 
-    public Double toBinary(double x) {
-        return Double.parseDouble(Long.toBinaryString(Double.doubleToLongBits(x)));
+    public String toBinary(double x) {
+        return Long.toBinaryString(Double.doubleToRawLongBits(x));
     }
 
     public Base getCurrentBase() {
