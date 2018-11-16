@@ -24,5 +24,5 @@ public class BaseManager {
 }
 
 enum Base {
-    Decimal, Binary, Heximal, Octal
+    Decimal, Binary, Hexadecimal, Octal
 }
