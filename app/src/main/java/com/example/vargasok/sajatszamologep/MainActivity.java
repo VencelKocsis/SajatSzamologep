@@ -132,8 +132,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         String input = t1.getText().toString();
 
-        double result = 0;
-
         switch (button.getId()) {
             case R.id.szam0:
                 if (input.equals("0"))
