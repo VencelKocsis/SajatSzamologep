@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.InputDevice;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -166,24 +167,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.plussz:
                 Gradient(11);
-                result = mathManager.DoMath(Operations.Addition);
+                Display(mathManager.DoMath(Operations.Addition));
                 break;
             case R.id.minusz:
                 Gradient(12);
-                result = mathManager.DoMath(Operations.Subtraction);
+                Display(mathManager.DoMath(Operations.Subtraction));
                 break;
             case R.id.szorzas:
                 Gradient(13);
-                result = mathManager.DoMath(Operations.Multiplication);
+                Display(mathManager.DoMath(Operations.Multiplication));
                 break;
             case R.id.osztas:
                 Gradient(14);
-                result = mathManager.DoMath(Operations.Division);
+                Display(mathManager.DoMath(Operations.Division));
                 break;
 
             case R.id.egyenlo:
                 if (prevOp != null) {
-                    result = mathManager.DoMath(Operations.Equal);
+                    Display(mathManager.DoMath(Operations.Equal));
                     Gradient();
                 } else
                     Display(Input());
@@ -218,8 +219,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
                 break;
         }
-
-        Display(result);
     }
 
     //TODO toBinary toDEC toHEX toOCT functions into switch
@@ -237,6 +236,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
         t1.setText(df.format(x));
         prevResult = x;
+        ANS = x;
     }
 
 
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             prevInput = Double.parseDouble(input);
         }
         return prevInput;
-}
+    }
 
 
 
@@ -288,10 +288,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public boolean getJustOutputted() {
         return justOutputted;
-    }
-
-    public void setANS(double ans) {
-        ANS = ans;
     }
 }
 

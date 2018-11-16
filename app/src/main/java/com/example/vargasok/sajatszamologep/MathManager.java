@@ -11,8 +11,6 @@ public class MathManager {
         Operations prevOp = main.getPrevOp();
         double prevResult = main.getPrevResult();
 
-        double result = 0;
-
         double input = main.Input();
         if (prevOp == null) {
             main.setPrevOp(op);
@@ -21,19 +19,16 @@ public class MathManager {
             else
                 return(prevResult);
         }
-
+        main.setPrevOp(op);
         switch (prevOp) {
             case Addition:
-                result = (prevResult + input);
-                break;
+                return(prevResult + input);
 
             case Subtraction:
-                result = (prevResult - input);
-                break;
+                return(prevResult - input);
 
             case Multiplication:
-                result = (prevResult * input);
-                break;
+                return(prevResult * input);
 
             case Division:
                 if (input == 0) {
@@ -41,13 +36,10 @@ public class MathManager {
                     main.ResetCalculator();
                     return 0;
                 }
-                result = (prevResult / input);
-                break;
+                return(prevResult / input);
         }
-        main.setPrevOp(op);
-        main.setANS(prevResult);
 
-        return result;
+        return prevResult;
     }
 
     public MathManager(MainActivity _main) {
