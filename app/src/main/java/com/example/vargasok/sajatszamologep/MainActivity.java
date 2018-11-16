@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     t1.setText(t1.getText() + button.getText().toString());
                     justOutputted = false;
                 }
-                break;
+                return;
 
             case R.id.plussz:
                 Gradient(11);
