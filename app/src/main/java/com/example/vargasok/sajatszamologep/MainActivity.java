@@ -221,9 +221,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
     }
 
-    //TODO toBinary toDEC toHEX toOCT functions into switch
-
     public void ResetCalculator() {
+        ANS = prevResult;
         Display(0);
         firstInput = true;
         prevInput = 0;
@@ -236,10 +235,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
         t1.setText(df.format(x));
         prevResult = x;
-        ANS = x;
     }
-
-
 
     public double Input() {
         String input = t1.getText().toString();
@@ -255,8 +251,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
         return prevInput;
     }
-
-
 
     private void Gradient(int id) {
         Gradient();
