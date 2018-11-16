@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InputDevice;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     boolean justOutputted = true;
     boolean firstInput = true;
     boolean ANSPressed = false;
-    Operations prevOp = null;
+    private Operations prevOp = null;
+    private MathManager mathManager = new MathManager(this);
+    private BaseManager baseManager = new BaseManager(this);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         String input = t1.getText().toString();
 
+        double result = 0;
+
         switch (button.getId()) {
             case R.id.szam0:
                 if (input.equals("0"))
@@ -161,24 +166,24 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.plussz:
                 Gradient(11);
-                DoMath(Operations.Addition);
+                result = mathManager.DoMath(Operations.Addition);
                 break;
             case R.id.minusz:
                 Gradient(12);
-                DoMath(Operations.Subtraction);
+                result = mathManager.DoMath(Operations.Subtraction);
                 break;
             case R.id.szorzas:
                 Gradient(13);
-                DoMath(Operations.Multiplication);
+                result = mathManager.DoMath(Operations.Multiplication);
                 break;
             case R.id.osztas:
                 Gradient(14);
-                DoMath(Operations.Division);
+                result = mathManager.DoMath(Operations.Division);
                 break;
 
             case R.id.egyenlo:
                 if (prevOp != null) {
-                    DoMath(Operations.Equal);
+                    result = mathManager.DoMath(Operations.Equal);
                     Gradient();
                 } else
                     Display(Input());
@@ -200,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.BIN:
                 Gradient(19);
-
+                Display(baseManager.toBinary(prevResult));
                 break;
 
             case R.id.HEX:
@@ -213,11 +218,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
                 break;
         }
+
+        Display(result);
     }
 
     //TODO toBinary toDEC toHEX toOCT functions into switch
 
-    private void ResetCalculator() {
+    public void ResetCalculator() {
         Display(0);
         firstInput = true;
         prevInput = 0;
@@ -232,7 +239,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         prevResult = x;
     }
 
-    private double Input() {
+
+
+    public double Input() {
         String input = t1.getText().toString();
         input = input.replaceAll("[^0-9.]", "");
         if (input.startsWith(".")) {
@@ -245,44 +254,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             prevInput = Double.parseDouble(input);
         }
         return prevInput;
-    }
+}
 
-    private void DoMath(Operations op) {
-        double input = Input();
-        if (prevOp == null) {
-            prevOp = op;
-            if (!justOutputted)
-                Display(input);
-            else
-                Display(prevResult);
-            return;
-        }
 
-        switch (prevOp) {
-            case Addition:
-                Display(prevResult + input);
-                break;
-
-            case Subtraction:
-                Display(prevResult - input);
-                break;
-
-            case Multiplication:
-                Display(prevResult * input);
-                break;
-
-            case Division:
-                if (input == 0) {
-                    Toast.makeText(getApplicationContext(), "Nullával nem lehet osztani.", Toast.LENGTH_SHORT).show();
-                    ResetCalculator();
-                    return;
-                }
-                Display(prevResult / input);
-                break;
-        }
-        prevOp = op;
-        ANS = prevResult;
-    }
 
     private void Gradient(int id) {
         Gradient();
@@ -298,6 +272,26 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[19].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
         buttons[20].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
         buttons[21].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
+    }
+
+    public Operations getPrevOp() {
+        return prevOp;
+    }
+
+    public void setPrevOp(Operations op) {
+        prevOp = op;
+    }
+
+    public double getPrevResult() {
+        return prevResult;
+    }
+
+    public boolean getJustOutputted() {
+        return justOutputted;
+    }
+
+    public void setANS(double ans) {
+        ANS = ans;
     }
 }
 
