@@ -1,15 +1,17 @@
 package com.example.vargasok.sajatszamologep;
 
-import android.util.Log;
-
 public class BaseManager {
 
     private static Base currentBase = Base.Decimal;
 
-    private MainActivity mainActivity;
+    private MainActivity main;
 
     public String toBinary(double x) {
-        return Long.toBinaryString(Double.doubleToRawLongBits(x));
+        String y = Long.toBinaryString(Double.doubleToRawLongBits(x));
+        if (y.startsWith(Integer.toString(0)))
+            y = "-" + y.substring(1);
+
+        return y;
     }
 
     public Base getCurrentBase() {
@@ -20,8 +22,8 @@ public class BaseManager {
         currentBase = base;
     }
 
-    public BaseManager(MainActivity main) {
-        mainActivity = main;
+    public BaseManager(MainActivity _main) {
+        main = _main;
     }
 }
 
