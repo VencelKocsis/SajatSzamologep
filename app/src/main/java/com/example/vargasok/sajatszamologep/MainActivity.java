@@ -17,18 +17,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.DecimalFormat;
+import java.util.Scanner;
+
+import static java.lang.Double.toHexString;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     TextView t1;
     Button buttons[] = new Button[22];
 
-    double prevInput, prevResult, ANS, dec, bin, hex, oct;
+    double prevInput, prevResult, ANS, dec, bin, hex;
+    boolean isBin = false;
+    boolean isHex = false;
+    boolean isDec = true;
     boolean justOutputted = true;
     boolean firstInput = true;
     boolean ANSPressed = false;
     private Operations prevOp = null;
     private MathManager mathManager = new MathManager(this);
-    private BaseManager baseManager = new BaseManager(this);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[18] = findViewById(R.id.DEC);
         buttons[19] = findViewById(R.id.BIN);
         buttons[20] = findViewById(R.id.HEX);
-        buttons[21] = findViewById(R.id.OCT);
 
         buttons[0].setOnClickListener(this);
         buttons[1].setOnClickListener(this);
@@ -108,21 +112,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[18].setOnClickListener(this);
         buttons[19].setOnClickListener(this);
         buttons[20].setOnClickListener(this);
-        buttons[21].setOnClickListener(this);
 
         t1 = findViewById(R.id.kijelzo1);
-
-        /*
-        if(getResources().getDisplayMetrics().widthPixels>getResources().getDisplayMetrics().
-                heightPixels)
-        {
-            setContentView(R.layout.rotated_activity_main); // it will use xml from /res/layout-land
-        }
-        else
-        {
-            setContentView(R.layout.activity_main); // it will use .xml from /res/layout
-        }
-        */
     }
 
     public void onClick(View v) {
@@ -190,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.AC:
                 ResetCalculator();
+                Gradient();
                 break;
 
             case R.id.ANS:
@@ -199,22 +191,36 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.DEC:
                 Gradient(18);
+                if (isHex)
+                {
+
+                }
+                else if (isBin)
+                {
+                    Display(prevResult = Integer.parseInt(t1.getText().toString(), 2));
+                    isBin = false;
+                }
+                else
+                {
+                    Display(prevResult);
+                    isDec = false;
+                }
 
                 break;
 
             case R.id.BIN:
                 Gradient(19);
-                Display(baseManager.toBinary(prevResult));
+                Display(Double.parseDouble(Integer.toBinaryString((int)prevResult)));
+                isBin = true;
                 break;
 
             case R.id.HEX:
                 Gradient(20);
-
-                break;
-
-            case R.id.OCT:
-                Gradient(21);
-
+                int prevR = 1;
+                prevR = Integer.parseInt(Double.toString(prevResult));
+                String hex = Integer.toHexString(prevR);
+                Log.i("Hex", hex);
+                Display(hex);
                 break;
         }
     }
@@ -228,16 +234,27 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         prevResult = 0;
     }
 
-    private void Display(double x) {
-        justOutputted = true;
-        DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
-        t1.setText(df.format(x));
-        prevResult = x;
+    private  void Display(String s)
+    {
+        t1.setText(s);
     }
 
-    private void Display(String x) {
+    private void Display(double x) {
+
         justOutputted = true;
-        t1.setText(x);
+
+        if(isBin)
+        {
+            prevResult = x;
+            isBin = false;
+            t1.setText(Double.toString(x));
+        }
+        else
+        {
+            DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
+            t1.setText(df.format(x));
+        }
+        prevResult = x;
     }
 
     public double Input() {
@@ -268,7 +285,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         buttons[18].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
         buttons[19].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
         buttons[20].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
-        buttons[21].setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.m_gradient));
     }
 
     public Operations getPrevOp() {
