@@ -16,17 +16,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import static java.lang.Double.toHexString;
 
+
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     TextView t1;
     Button buttons[] = new Button[22];
+
+    public szamrendszerek szamrendszer= szamrendszerek.decimal;
+
 
     double prevInput, prevResult, ANS, dec, bin, hex;
     boolean isBin = false;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     boolean ANSPressed = false;
     private Operations prevOp = null;
     private MathManager mathManager = new MathManager(this);
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                     Gradient();
                 } else
                     Display(Input());
+
                 break;
 
             case R.id.AC:
@@ -194,18 +197,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.DEC:
                 Gradient(18);
+                szamrendszer=szamrendszerek.decimal;
                 if (isHex)
                 {
 
                 }
-                if (isBin)
-                {   //prevResult =Double.parseDouble (t1.getText().toString().replace(",",""));
-                    prevResult = Double.parseDouble( Double.toString(prevResult).replace(',',' '));
-
-                    prevResult =Double.parseDouble( Double.toString(prevResult).replace(".", ""));
-
-                 //   Display(frombinary(prevResult));
-                    Display( Integer.parseInt(Double.toString(prevResult), 2));
+                else if (isBin)
+                {
+                    Display(prevResult = Integer.parseInt(t1.getText().toString(), 2));
                     isBin = false;
                 }
                 else
@@ -217,15 +216,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.BIN:
-                Gradient(19);
-                Display(Double.parseDouble(Integer.toBinaryString((int)prevResult)));
-                isBin = true;
+
+                szamrendszer=szamrendszerek.binary;
+
                 break;
 
             case R.id.HEX:
                 Gradient(20);
-              isHex=true;
-              Display(prevResult);
+                int prevR = 1;
+                prevR = Integer.parseInt(Double.toString(prevResult));
+                String hex = Integer.toHexString(prevR);
+                Log.i("Hex", hex);
+                Display(hex);
                 break;
         }
     }
@@ -248,37 +250,23 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         justOutputted = true;
 
-        if(isBin)
+        if(isBin==false)
         {
             prevResult = x;
-            isBin=false;
+            isBin = false;
             t1.setText(Double.toString(x));
         }
-        if (isHex){
-            prevResult=x;
-            isHex=false;
-            t1.setText(tohexa((int)x));
-
-
-
-        }
-        else
-        {
-            DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
-            t1.setText(df.format(x));
-
-        }
+    //    else
+     //   {
+     //       DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
+    //        t1.setText(df.format(x));
+  //      }
         prevResult = x;
     }
 
     public double Input() {
         String input = t1.getText().toString();
-        input = input.replaceAll("[^0-9]", "");
-        if (input.startsWith(".")) {
-            input = input.replace(".", "0.");
-        } else if (input.endsWith(".")) {
-            input = input.replace(".", "");
-        }
+
 
         if (!justOutputted) {
             prevInput = Double.parseDouble(input);
@@ -317,6 +305,46 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         return justOutputted;
     }
 
+public szamrendszerek getNumsys(){return szamrendszer;}
+
+
+
+
+
+
+
+    public double fromhexa(char[] convertible){
+        double vegsoertek=0;
+        int i =convertible.length;
+        while (i>0){switch(convertible[i-1]){
+            case 'A':  vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*10);i--;
+                break;
+            case 'B':vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*11);i--;
+                break;
+            case 'C':vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*12);i--;
+                break;
+            case 'D':vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*13);i--;
+                break;
+            case 'E':vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*14);i--;
+                break;
+            case 'F':vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*15);i--;
+                break;
+
+            default: vegsoertek=vegsoertek+(Math.pow(16,convertible.length-i)*Character.getNumericValue(convertible[i-1]));i--;
+                break;
+        }
+
+
+
+
+        }
+        return(vegsoertek);
+
+    }
+
+
+
+
     public String  tohexa(int convertible){
 
 
@@ -351,19 +379,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 
         }
-        return(new StringBuilder(szam).reverse().toString());
-    }
-    public double frombinary(double convertible){
-        char[] convertibleR = Double.toString(convertible).toCharArray();
 
-        int i =convertibleR.length;
-        convertible=0;
-        while (i>0){if(convertibleR[i-1]=='1'){convertible=convertible+Math.pow(2,convertibleR.length-i);}i--;}
-        return (convertible);
-    }
+
+
+        return(new StringBuilder(szam).reverse().toString());}
 }
 
 enum Operations
 {
     Addition, Subtraction, Multiplication, Division, Equal
 }
+
+
+ enum szamrendszerek{decimal,binary,hexa}
+
+
