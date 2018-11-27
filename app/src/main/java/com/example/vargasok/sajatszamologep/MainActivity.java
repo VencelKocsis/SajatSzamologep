@@ -16,7 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static java.lang.Double.toHexString;
@@ -195,9 +198,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 {
 
                 }
-                else if (isBin)
-                {
-                    Display(prevResult = Integer.parseInt(t1.getText().toString(), 2));
+                if (isBin)
+                {   //prevResult =Double.parseDouble (t1.getText().toString().replace(",",""));
+                    prevResult = Double.parseDouble( Double.toString(prevResult).replace(',',' '));
+
+                    prevResult =Double.parseDouble( Double.toString(prevResult).replace(".", ""));
+
+                    //   Display(frombinary(prevResult));
+                    Display( Integer.parseInt(Double.toString(prevResult), 2));
                     isBin = false;
                 }
                 else
@@ -216,11 +224,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
             case R.id.HEX:
                 Gradient(20);
-                int prevR = 1;
-                prevR = Integer.parseInt(Double.toString(prevResult));
-                String hex = Integer.toHexString(prevR);
-                Log.i("Hex", hex);
-                Display(hex);
+                isHex=true;
+                Display(prevResult);
                 break;
         }
     }
@@ -246,20 +251,29 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         if(isBin)
         {
             prevResult = x;
-            isBin = false;
+            isBin=false;
             t1.setText(Double.toString(x));
+        }
+        if (isHex){
+            prevResult=x;
+            isHex=false;
+            t1.setText(tohexa((int)x));
+
+
+
         }
         else
         {
             DecimalFormat df = new DecimalFormat("###,###,###,###.###############");
             t1.setText(df.format(x));
+
         }
         prevResult = x;
     }
 
     public double Input() {
         String input = t1.getText().toString();
-        input = input.replaceAll("[^0-9.]", "");
+        input = input.replaceAll("[^0-9]", "");
         if (input.startsWith(".")) {
             input = input.replace(".", "0.");
         } else if (input.endsWith(".")) {
@@ -301,6 +315,51 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public boolean getJustOutputted() {
         return justOutputted;
+    }
+
+    public String  tohexa(int convertible){
+
+
+        String szam="" ;
+        while(convertible>0){
+
+            if((convertible%16)>9 && (convertible%16)<16){
+                switch(convertible%16){
+
+                    case 10: szam=szam+"A";
+                        break;
+
+                    case 11: szam=szam+"B";
+                        break;
+
+                    case 12: szam=szam+"C";
+                        break;
+
+                    case 13: szam=szam+"D";
+                        break;
+
+                    case 14: szam=szam+"E";
+                        break;
+
+                    case 15: szam=szam+"F";
+                        break; }
+                convertible=convertible/16;}
+
+            else{szam=szam+(convertible%16);
+                convertible=convertible/16;
+            }
+
+
+        }
+        return(new StringBuilder(szam).reverse().toString());
+    }
+    public double frombinary(double convertible){
+        char[] convertibleR = Double.toString(convertible).toCharArray();
+
+        int i =convertibleR.length;
+        convertible=0;
+        while (i>0){if(convertibleR[i-1]=='1'){convertible=convertible+Math.pow(2,convertibleR.length-i);}i--;}
+        return (convertible);
     }
 }
 
