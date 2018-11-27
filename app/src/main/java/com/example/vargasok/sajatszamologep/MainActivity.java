@@ -199,12 +199,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
                 }
                 if (isBin)
-                {   //prevResult =Double.parseDouble (t1.getText().toString().replace(",",""));
+                {
                     prevResult = Double.parseDouble( Double.toString(prevResult).replace(',',' '));
-
                     prevResult =Double.parseDouble( Double.toString(prevResult).replace(".", ""));
-
-                    //   Display(frombinary(prevResult));
                     Display( Integer.parseInt(Double.toString(prevResult), 2));
                     isBin = false;
                 }
@@ -239,11 +236,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         prevResult = 0;
     }
 
-    private  void Display(String s)
-    {
-        t1.setText(s);
-    }
-
     private void Display(double x) {
 
         justOutputted = true;
@@ -258,9 +250,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             prevResult=x;
             isHex=false;
             t1.setText(tohexa((int)x));
-
-
-
         }
         else
         {
@@ -317,48 +306,65 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         return justOutputted;
     }
 
-    public String  tohexa(int convertible){
+    public String  tohexa(int convertible)
+    {
 
+        String szam = "" ;
+        while(convertible > 0)
+        {
 
-        String szam="" ;
-        while(convertible>0){
-
-            if((convertible%16)>9 && (convertible%16)<16){
-                switch(convertible%16){
-
-                    case 10: szam=szam+"A";
+            if((convertible % 16) > 9 && (convertible % 16) < 16)
+            {
+                switch(convertible % 16)
+                {
+                    case 10:
+                        szam = szam + "A";
                         break;
 
-                    case 11: szam=szam+"B";
+                    case 11:
+                        szam = szam + "B";
                         break;
 
-                    case 12: szam=szam+"C";
+                    case 12:
+                        szam = szam + "C";
                         break;
 
                     case 13: szam=szam+"D";
                         break;
 
-                    case 14: szam=szam+"E";
+                    case 14:
+                        szam = szam + "E";
                         break;
 
-                    case 15: szam=szam+"F";
-                        break; }
-                convertible=convertible/16;}
-
-            else{szam=szam+(convertible%16);
-                convertible=convertible/16;
+                    case 15:
+                        szam = szam + "F";
+                        break;
+                }
+                convertible = convertible / 16;
             }
 
-
+            else
+            {
+                szam =szam + (convertible % 16);
+                convertible = convertible / 16;
+            }
         }
         return(new StringBuilder(szam).reverse().toString());
     }
-    public double frombinary(double convertible){
+    public double frombinary(double convertible)
+    {
         char[] convertibleR = Double.toString(convertible).toCharArray();
 
-        int i =convertibleR.length;
-        convertible=0;
-        while (i>0){if(convertibleR[i-1]=='1'){convertible=convertible+Math.pow(2,convertibleR.length-i);}i--;}
+        int i = convertibleR.length;
+        convertible = 0;
+        while (i > 0)
+        {
+            if(convertibleR[i - 1] == '1')
+            {
+                convertible = convertible + Math.pow(2, convertibleR.length - i);
+            }
+            i--;
+        }
         return (convertible);
     }
 }
