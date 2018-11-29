@@ -26,7 +26,7 @@ import static java.lang.Double.toHexString;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
     TextView t1;
-    Button buttons[] = new Button[22];
+    Button buttons[] = new Button[21];
 
     double prevInput, prevResult, ANS, dec, bin, hex;
     boolean isBin = false;
@@ -46,18 +46,22 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case R.id.style_white:
                 getWindow().getDecorView().setBackgroundColor(Color.WHITE);
-                for (int i = 0; i < buttons.length; i++) {
+                for (int i = 0; i < buttons.length; i++)
+                {
                     buttons[i].setTextColor(Color.BLACK);
                 }
                 return true;
 
             case R.id.style_black:
                 getWindow().getDecorView().setBackgroundColor(Color.BLACK);
-                for (int i = 0; i < buttons.length; i++) {
+                for (int i = 0; i < buttons.length; i++)
+                {
                     buttons[i].setTextColor(Color.WHITE);
                 }
                 return true;
