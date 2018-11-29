@@ -18,9 +18,11 @@
         <TextView
             android:id="@+id/kijelzo1"
             android:layout_width="380dp"
-            android:layout_height="100dp"
+            android:layout_height="96dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:background="@drawable/mygradient"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -29,6 +31,7 @@
             android:text="0"
             android:textColor="#FF00EF00"
             android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +53,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="76dp"
             android:background="@drawable/number_gradient"
             android:text="8"
             android:textSize="30sp"
@@ -63,7 +66,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="76dp"
             android:background="@drawable/number_gradient"
             android:text="9"
             android:textSize="30sp"
@@ -146,25 +149,33 @@
             android:id="@+id/szam0"
             android:layout_width="145dp"
             android:layout_height="60dp"
+            android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/number_gradient"
             android:text="0"
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/szam2" /> // 0
+            app:layout_constraintTop_toBottomOf="@+id/szam2"
+            app:layout_constraintVertical_bias="0.0" /> // 0
 
         <Button
             android:id="@+id/comma"
             android:layout_width="65dp"
             android:layout_height="60dp"
+            android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/number_gradient"
             android:text="."
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/szam0"
-            app:layout_constraintTop_toBottomOf="@+id/szam3" /> // .
+            app:layout_constraintTop_toBottomOf="@+id/szam3"
+            app:layout_constraintVertical_bias="0.0" /> // .
 
         <Button
             android:id="@+id/osztas"
@@ -172,10 +183,14 @@
             android:layout_height="60dp"
             android:layout_marginStart="176dp"
             android:layout_marginLeft="176dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="268dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/operation_gradient"
             android:text="/"
             android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.062"
             app:layout_constraintStart_toEndOf="@+id/AC"
             app:layout_constraintTop_toTopOf="parent" /> // /
 
@@ -185,9 +200,13 @@
             android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/operation_gradient"
             android:text="x"
             android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toEndOf="@+id/szam9"
             app:layout_constraintTop_toBottomOf="@+id/osztas" /> // *
 
@@ -197,9 +216,13 @@
             android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/operation_gradient"
             android:text="-"
             android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toEndOf="@+id/szam6"
             app:layout_constraintTop_toBottomOf="@+id/szorzas" /> // -
 
@@ -209,9 +232,13 @@
             android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/operation_gradient"
             android:text="+"
             android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toEndOf="@+id/szam3"
             app:layout_constraintTop_toBottomOf="@+id/minusz" /> // +
 
@@ -221,18 +248,26 @@
             android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/operation_gradient"
             android:text="="
             android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
             app:layout_constraintStart_toEndOf="@+id/comma"
-            app:layout_constraintTop_toBottomOf="@+id/plussz" /> // =
+            app:layout_constraintTop_toBottomOf="@+id/plussz"
+            app:layout_constraintVertical_bias="0.0" /> // =
 
         <Button
             android:id="@+id/AC"
             android:layout_width="65dp"
             android:layout_height="60dp"
+            android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="268dp"
             android:background="@drawable/operation_gradient"
             android:text="AC"
             android:textSize="25sp"
@@ -246,9 +281,13 @@
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/clicked_gradient"
             android:text="ANS"
             android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toEndOf="@+id/HEX"
             app:layout_constraintTop_toBottomOf="@+id/BIN" />// ANS
 
@@ -258,7 +297,7 @@
             android:layout_height="70dp"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/m_gradient"
             android:text="DEC"
             android:textSize="40sp"
@@ -271,10 +310,14 @@
             android:layout_height="70dp"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/m_gradient"
             android:text="BIN"
             android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/DEC"
             app:layout_constraintTop_toBottomOf="@+id/kijelzo1" /> // BIN
 
